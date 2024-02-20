@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lustria">
+    <title>Star Hold Cafe</title>
+    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/bHbA2LU.png">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        body {
+            background-color: black;
+            font-family: 'Lato';
+            color: white;
+            font-size: 16px;
+        }
+
+        h1 {
+            font-family: 'Lustria';
+            color: rgb(66, 186, 255);
+            font-size: 25px;
+        }
+
+        /**NAVIGATION STYLE **/
+        .navbar ul {
+            font-size: 20px;
+            font-weight: 200;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0.253));
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 99999;
+            text-align: right;
+        }
+
+        .navbar li {
+            display: inline-block;
+        }
+
+        .navbar li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar li a:hover {
+            background-color: rgba(43, 115, 173, 0.705);
+        }
+
+        /**PARALLAX BUT GOING TO THE LEFT**/
+        .logo {
+            width: 600px;
+            height: 100px;
+            background-image: url(https://i.imgur.com/3Ce6hJ3.png);
+            background-size: cover;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 1;
+            transition: opacity 0.5s;
+        }
+
+        /**PARALLAX**/
+        .keyart,
+        .keyart_layer {
+            height: 1000px;
+        }
+
+        .keyart {
+            position: relative;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .keyart_layer {
+            background-position: bottom center;
+            background-size: auto;
+            background-repeat: repeat-x;
+            width: 100%;
+            position: absolute;
+        }
+
+        .keyart_layer.parallax {
+            position: fixed;
+        }
+
+        .main-content {
+            width: 100%;
+            position: absolute;
+            z-index: 200;
+        }
+
+        /*ADD OR REMOVE LAYERS AS NEEDED*/
+
+        #keyart-0 {
+            background-image: url(https://i.imgur.com/jmTMkKj.png);
+        }
+
+        #keyart-1 {
+            background-image: url(https://i.imgur.com/jmTMkKj.png);
+        }
+
+        #keyart-2 {
+            background-image: url(https://i.imgur.com/Ia9z9Ny.png);
+        }
+
+        #keyart-3 {
+            background-image: url(https://i.imgur.com/H8CsRwC.png);
+        }
+
+        #keyart-4 {
+            background-image: url(https://i.imgur.com/vxKG4Ik.png);
+        }
+
+        #keyart-5 {
+            background-image: url(https://i.imgur.com/bFldqGT.png);
+        }
+
+        #keyart-6 {
+            background-image: url(https://i.imgur.com/ZiLSx82.png);
+            width: 100%;
+        }
+
+        #keyart-7 {
+            background-image: url(https://i.imgur.com/sF5JJ4r.png);
+        }
+
+        #keyart-8 {
+            background-image: url(https://i.imgur.com/PVRM4ps.png);
+        }
+
+        #keyart-scrim {
+            opacity: 0;
+        }
+
+        /***ADDITIONAL PARALLAXES***/
+        #stars1 {
+            position: fixed;
+            top: 50%;
+            transform: translate(0, -50%);
+            transition: left 0.5s ease-in-out;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        #stars2 {
+            position: fixed;
+            top: 50%;
+            left: 100%;
+            transform: translate(-100%, -50%);
+            transition: right 0.5s ease-in-out;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .aniSlow {
+            animation: floatAnimation 8s infinite;
+        }
+
+        .aniMed {
+            animation: floatAnimation 6s infinite;
+        }
+
+        .aniFast {
+            animation: floatAnimation 4s infinite;
+        }
+
+        @keyframes floatAnimation {
+            0% {
+                top: 0px;
+            }
+
+            50% {
+                top: 20px;
+            }
+
+            100% {
+                top: 0px;
+            }
+        }
+
+        .aboutUs {
+            width: 500px;
+            height: auto;
+            text-align: center;
+            background-color: black;
+        }
+
+        .aboutUs h1 {
+            margin: 20px;
+        }
+
+        #menu {
+            justify-content: center;
+            background: linear-gradient(#000000, #020618);
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .food-menu {
+            display: flex;
+            justify-content: center;
+        }
+
+        .food-menu div {
+            float: left;
+            text-align: center;
+            width: 300px;
+            height: 400px;
+        }
+
+        .food-menu div img {
+            width: 200px;
+            border-radius: 90px;
+        }
+
+        .details {
+            display: flex;
+            font-size: 12px;
+            float: left;
+            padding: 20px;
+            width: 200px;
+        }
+    </style>
+    <script>
+        /////////CODE FOR MODIFY OPACITY FOR PARALLAX////////////
+        document.addEventListener("DOMContentLoaded", function () {
+            const aboutSection = document.getElementById("about");
+            const dividerSection = document.getElementById("divider");
+            const logoDiv = document.getElementById("logo");
+            const stars1 = document.getElementById("stars1");
+            const stars2 = document.getElementById("stars2");
+
+
+            function fadeOut(element) {
+                element.style.opacity = 0;
+            }
+
+            function fadeIn(element) {
+                element.style.opacity = 1;
+            }
+
+            function checkSectionInView() {
+                const aboutSect = aboutSection.getBoundingClientRect();
+                const dividerSect = dividerSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                if (dividerSect.top <= windowHeight) {
+                    fadeIn(stars1);
+                    fadeIn(stars2);
+                } else {
+                    fadeOut(stars1);
+                    fadeOut(stars2);
+                }
+
+                if (aboutSect.top <= windowHeight) {
+                    fadeOut(logoDiv);
+                    fadeOut(stars1);
+                    fadeOut(stars2);
+                } else {
+                    fadeIn(logoDiv);
+                }
+
+            }
+
+            window.addEventListener("scroll", checkSectionInView);
+        });
+
+        /////////CODE FOR EASE IN PARALLAX//////////////
+    </script>
+</head>
+
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+    <section id="home">
+        <div class="keyart" id="parallax">
+            <div class="keyart_layer parallax" id="keyart-0" data-speed="0"></div>
+            <div class="keyart_layer parallax" id="keyart-1" data-speed="100"></div>
+            <div class="keyart_layer parallax" id="keyart-4" data-speed="50"></div>
+            <div class="keyart_layer parallax" id="keyart-2" data-speed="90"></div>
+            <div class="keyart_layer parallax aniFast" id="keyart-3" data-speed="80"></div>
+            <div class="keyart_layer parallax" id="keyart-5" data-speed="75"></div>
+            <div class="keyart_layer parallax" id="keyart-6" data-speed="100"></div>
+            <div class="keyart_layer parallax aniMed" id="keyart-7" data-speed="150"></div>
+            <div class="keyart_layer parallax aniSlow" id="keyart-8" data-speed="70"></div>
+            <div class="logo parallax-to-center" id="logo" style="z-index: 10;"></div>
+            <!--Front image, in sync with scroll, no need to parallax-->
+            <!--Add or Remove layers as needed - check Parallax.css for refrence-->
+        </div>
+    </section>
+    <section class="main-content">
+        <section id="divider" style="height: 1000px;">
+            <img src="https://i.imgur.com/qU42QyR.png" id="stars1">
+            <img src="https://i.imgur.com/rbMxMSr.png" id="stars2">
+        </section>
+        <section id="about"
+            style="height: 100vh; align-items: center; text-align: center; position: relative; justify-content: center; display: flex; background-image: url('https://i.imgur.com/izR2ZAs.png'); background-size: cover;">
+            <div class="aboutUs">
+                <h1>About Us</h1>
+                <p>Inspired by the vastness of the night sky and the captivating beauty of the stars, Star Hold Cafe was
+                    born
+                    out of a shared passion for stars and the love of a good cup of coffee. Our founders, a group of
+                    astral enthusiasts and coffee aficionados, dreamed of creating a space where people could gather
+                    to
+                    appreciate both the wonders of the universe and the art of brewing coffee.</p>
+            </div>
+        </section>
+        <section id="menu">
+            <h1 style="text-align: center; margin: 20px;">Menu</h1>
+            <br>
+            <div class="food-menu">
+                <div>
+                    <img src="https://i.imgur.com/ahdoBw3.jpg" alt="Delicious Asteroid">
+                    <p><b>Delicious Asteroid</b></p>
+                    <p>200.00 PHP</p>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/VNYUySz.jpg" alt="Rare Moon Cakes">
+                    <p><b>Rare Moon Cakes</b></p>
+                    <p>250.00 PHP</p>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/LosxKoU.jpg" alt="Tasty Moon Rocks">
+                    <p><b>Tasty Moon Rocks</b></p>
+                    <p>180.00 PHP</p>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/VQ3yhHq.jpg" alt="Traveller's Home">
+                    <p><b>Traveller's Home</b></p>
+                    <p>120.00 PHP</p>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/BOdtE7c.jpg" alt="Binary Planets">
+                    <p><b>Binary Planets</b></p>
+                    <p>270.00 PHP</p>
+                </div>
+            </div>
+        </section>
+        <section id="contact" style="justify-content: center; text-align: center; display: flex;">
+
+            <div class="details">
+                Contact Us:
+                Star Hold Cafe - Branch of Star Hold Cafe - Where Astronomy Meets Coffee
+                123 Celestial Street, Cityville, Galaxy 12345
+                Metro Manila, Philippines
+            </div>
+            <div class="details">
+                Phone: (02) 123-4567
+                Email: info@starholdcafe.com.ph
+            </div>
+            <div class="details">
+                Opening Hours:
+                Monday - Friday: 7:00 AM - 9:00 PM
+                Saturday - Sunday: 8:00 AM - 10:00 PM
+            </div>
+            <div class="details">
+                Follow Us:
+                Stay connected with us on social media for updates, celestial insights, and special offers.
+            </div>
+            <div class="details">
+                Facebook: facebook.com/starholdcafeph
+                Twitter: twitter.com/starholdcafeph
+                Instagram: instagram.com/starholdcafeph
+            </div>
+            <div class="details">
+                Subscribe to Our Newsletter:
+                Don't miss out on the latest news, events, and promotions. Sign up for our newsletter to stay in the
+                cosmic loop.
+            </div>
+            <div class="details">
+                Join Our Team:
+                We're always on the lookout for passionate individuals who share our love for coffee and the stars.
+                Visit our Careers page to explore job opportunities.
+            </div>
+            <div class="details">
+                © 2023 Star Hold Cafe. All rights reserved. Designed by Sophia Marie M. Dalpatan.
+            </div>
+        </section>
+    </section>
+
+    <!--Uses JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <!--Imported Script from Separated JS file-->
+    <script>
+        function castParallax() {
+
+            var opThresh = 350;
+            var opFactor = 750;
+
+            window.addEventListener("scroll", function (event) {
+                var top = this.pageYOffset;
+
+                var layers = document.getElementsByClassName("parallax");
+                var layer, speed, yPos;
+                for (var i = 0; i < layers.length; i++) {
+                    layer = layers[i];
+                    speed = layer.getAttribute('data-speed');
+                    var yPos = -(top * speed / 100);
+                    layer.setAttribute('style', 'transform: translate3d(0px, ' + yPos + 'px, 0px)');
+                }
+            });
+        }
+
+        function dispelParallax() {
+            $("#nonparallax").css('display', 'block');
+            $("#parallax").css('display', 'none');
+        }
+
+        function castSmoothScroll() {
+            $.srSmoothscroll({
+                step: 80,
+                speed: 300,
+                ease: 'linear'
+            });
+        }
+
+        function startSite() {
+            var platform = navigator.platform.toLowerCase();
+            var userAgent = navigator.userAgent.toLowerCase();
+
+            if (platform.indexOf('ipad') != -1 || platform.indexOf('iphone') != -1) {
+                dispelParallax();
+            } else if (platform.indexOf('win32') != -1 || platform.indexOf('linux') != -1) {
+                castParallax();
+                if ($.browser.webkit) {
+                    castSmoothScroll();
+                }
+            } else {
+                castParallax();
+            }
+        }
+        document.body.onload = startSite();
+    </script>
+
+</body>
+
+</html>
